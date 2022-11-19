@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ErmerTaste.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class FixDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -168,5 +167,6 @@ namespace ErmerTaste.Migrations
             migrationBuilder.DropTable(
                 name: "Producers");
         }
-    }
+    
+}
 }

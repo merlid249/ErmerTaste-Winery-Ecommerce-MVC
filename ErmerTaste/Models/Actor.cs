@@ -7,26 +7,27 @@ namespace ErmerTaste.Models
     public class Actor
     {
         [Key]
-        public int Id { get; set; } 
-        public string  ProfilePictureUrl { get; set; }
-        public string FullName { get; set; }    
+        public int Id { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        [Required(ErrorMessage = "Profile Picture is required")]
+        public string ProfilePictureURL { get; set; }
+
+        [Display(Name = "Full Name")]
+
+        [Required(ErrorMessage = "Full Name is required")]
+
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Full Name must be between 3 and 50 chars")]
+        public string FullName { get; set; }
+
+
+
+        [Display(Name = "Biography")]
+        [Required(ErrorMessage = "Biography is required")]
         public string Bio { get; set; }
 
-
         //Relationships
-        public List<Actor_Movie> Actor_Movies { get; set; }
-
-        //Cinema
-      
-        public int CinemaId { get; set; }
-        [ForeignKey("CinemaId")]
-        public Cinema Cinema { get; set; }
-
-        //Producer
-
-        public int ProducerId { get; set; }
-        [ForeignKey("ProducerId")]
-        public Producer Producer { get; set; }
+        public List<Actor_Movie> Actors_Movies { get; set; }
 
     }
 
