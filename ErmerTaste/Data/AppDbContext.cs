@@ -13,7 +13,7 @@ namespace ErmerTaste.Data
         {
             modelBuilder.Entity<Actor_Movie>().HasKey(am => new
             {
-                am.Movie.Id,
+                am.MovieId,
                 am.ActorId
             });
             modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Movie).WithMany(am => am.Actor_Movies).HasForeignKey(am =>

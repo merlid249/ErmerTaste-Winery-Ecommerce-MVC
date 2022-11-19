@@ -11,7 +11,7 @@ namespace ErmerTaste.Models
         public string Bio { get; set; }
 
 
-        //Relationship
+        //Relationships
         public List<Movie> Movies { get; set; } 
     }
 }
