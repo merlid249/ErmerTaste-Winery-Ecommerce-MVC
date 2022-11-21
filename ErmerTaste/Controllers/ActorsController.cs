@@ -1,5 +1,6 @@
 ﻿using ErmerTaste.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ErmerTaste.Controllers
 {
@@ -12,9 +13,11 @@ namespace ErmerTaste.Controllers
             _contect = contect;
         }
 
-        public IActionResult Index()
+       
+        public async Task<IActionResult> Index()
         {
-            var data = _contect.Actors.ToList();
+            var data = await _contect.Actors.ToListAsync();
+
             return View();
         }
     }
