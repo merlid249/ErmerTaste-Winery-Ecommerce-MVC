@@ -16,7 +16,7 @@ namespace ErmerTaste.Controllers
         {
             var allProducers = await _contect.Producers.ToListAsync();
 
-            return View();
+            return View(allProducers);
         }
     }
 }

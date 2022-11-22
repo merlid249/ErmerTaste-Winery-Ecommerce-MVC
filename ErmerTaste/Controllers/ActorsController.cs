@@ -16,9 +16,10 @@ namespace ErmerTaste.Controllers
        
         public async Task<IActionResult> Index()
         {
+            
             var data = await _contect.Actors.ToListAsync();
 
-            return View();
+            return View(data);
         }
     }
 }

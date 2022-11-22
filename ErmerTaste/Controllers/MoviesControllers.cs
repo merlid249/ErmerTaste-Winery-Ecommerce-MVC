@@ -15,7 +15,7 @@ namespace ErmerTaste.Controllers
         {
             var allMovies = await _contect.Movies.ToListAsync();
 
-            return View();
+            return View(allMovies);
         }
     }
 }
