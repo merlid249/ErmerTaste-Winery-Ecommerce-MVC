@@ -1,4 +1,5 @@
-﻿using ErmerTaste.Data;
+﻿
+using ErmerTaste.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +7,7 @@ namespace ErmerTaste.Controllers
 {
     public class MoviesControllers : Controller
     {
+
         private readonly AppDbContext _contect;
         public MoviesControllers(AppDbContext contect)
         {
@@ -17,5 +19,7 @@ namespace ErmerTaste.Controllers
 
             return View(allMovies);
         }
+
     }
 }
+
