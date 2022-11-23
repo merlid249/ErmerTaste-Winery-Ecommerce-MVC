@@ -1,4 +1,5 @@
 ﻿using ErmerTaste.Data;
+using ErmerTaste.Data.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,18 +7,17 @@ namespace ErmerTaste.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly  AppDbContext  _contect;
+        private readonly IActorsService _service;
 
-        public ActorsController(AppDbContext contect)
+        public ActorsController(IActorsService service)
         {
-            _contect = contect;
+            _service = service;
         }
 
        
         public async Task<IActionResult> Index()
         {
-            
-            var data = await _contect.Actors.ToListAsync();
+            var data =  _service.GetAll();
 
             return View(data);
         }
