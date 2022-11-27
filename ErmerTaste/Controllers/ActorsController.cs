@@ -17,7 +17,7 @@ namespace ErmerTaste.Controllers
        
         public async Task<IActionResult> Index()
         {
-            var data =  _service.GetAll();
+            var data = await  _service.GetAll();
 
             return View(data);
         }

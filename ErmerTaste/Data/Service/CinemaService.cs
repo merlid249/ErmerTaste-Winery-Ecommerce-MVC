@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ErmerTaste.Data.Service
 {
-    public class ActorService : IActorsService
+    public class CinemaService : ICinemaService
     {
         private readonly AppDbContext _context;
-        public ActorService(AppDbContext context)
+
+        public CinemaService(AppDbContext context)
         {
             _context = context;
         }
-        public void Add(Actor actor)
+        public void Add(Cinema actor)
         {
             throw new NotImplementedException();
         }
@@ -20,22 +21,21 @@ namespace ErmerTaste.Data.Service
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
+        public async Task<IEnumerable<Cinema>> GetAll()
         {
-            var allactors= await _context.Actors.ToListAsync();
+            var allCinemas = await _context.Cinemas.ToListAsync();
 
-            return allactors;
+            return allCinemas;
         }
 
-        public Actor GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Actor Update(int id, Actor actor)
+        public Cinema GetById(int id)
         {
             throw new NotImplementedException();
         }
 
+        public Cinema Update(int id, Cinema actor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
