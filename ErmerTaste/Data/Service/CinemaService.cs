@@ -6,7 +6,6 @@ namespace ErmerTaste.Data.Service
     public class CinemaService : ICinemaService
     {
         private readonly AppDbContext _context;
-
         public CinemaService(AppDbContext context)
         {
             _context = context;
