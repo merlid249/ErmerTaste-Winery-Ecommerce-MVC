@@ -14,12 +14,17 @@ namespace ErmerTaste.Controllers
             _service = service;
         }
 
-       
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var data = await  _service.GetAll();
+            var data = await _service.GetAll();
 
             return View(data);
+        }
+
+        public IActionResult Create()
+        {
+                return View();
         }
     }
 }

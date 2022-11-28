@@ -8,11 +8,12 @@ namespace ErmerTaste.Controllers
     public class CinemasController : Controller
     {
         private readonly ICinemaService _service;
-        private readonly AppDbContext _contect;
-        public CinemasController(AppDbContext contect)
+
+        public CinemasController(ICinemaService service)
         {
-            _contect = contect;
+            _service = service;
         }
+
         public async Task<IActionResult> Index()
         {
             var allCinemas = await _service.GetAll();
