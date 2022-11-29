@@ -10,29 +10,31 @@ namespace ErmerTaste.Data.Service
         {
             _context = context;
         }
-        public void Add(Actor actor)
+        public async void AddAsync(Actor actor)
+        {
+            await  _context.Actors.AddAsync(actor); 
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Actor>> GetAll()
+        public async Task<IEnumerable<Actor>> GetAllAsync()
         {
             var allactors= await _context.Actors.ToListAsync();
 
             return allactors;
         }
 
-        public Actor GetById(int id)
+        public async Task<IEnumerable<Actor>> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var results = await  _context.Actors.FirstOrDefault(n => n.Id == id);
+            return results;
         }
 
-        public Actor Update(int id, Actor actor)
+        public Actor UpdateAsync(int id, Actor actor)
         {
             throw new NotImplementedException();
         }

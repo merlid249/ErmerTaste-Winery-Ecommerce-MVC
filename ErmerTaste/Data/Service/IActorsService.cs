@@ -4,10 +4,10 @@ namespace ErmerTaste.Data.Service
 {
     public interface IActorsService
     {
-        Task<IEnumerable<Actor>> GetAll();
-        Actor GetById(int id);
-        void Add(Actor actor);  
-        Actor Update(int id,Actor actor);
-        void Delete(int id);    
+        Task<IEnumerable<Actor>> GetAllAsync();
+        Task<Actor> GetByIdAsync(int id);
+        void AddAsync(Actor actor);  
+        Actor UpdateAsync(int id,Actor actor);
+        void DeleteAsync(int id);    
     }
 }
