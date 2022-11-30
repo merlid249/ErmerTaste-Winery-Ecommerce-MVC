@@ -40,9 +40,12 @@ namespace ErmerTaste.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails=_service.GetByIdAsync(id);
-            if(actorDetails != null) {
-                return View("Empty");
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null)
+            {
+
+                return View("NotFound");
             }
             return View(actorDetails);
         }

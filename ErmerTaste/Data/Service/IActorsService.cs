@@ -6,8 +6,8 @@ namespace ErmerTaste.Data.Service
     {
         Task<IEnumerable<Actor>> GetAllAsync();
         Task<Actor> GetByIdAsync(int id);
-        void AddAsync(Actor actor);  
+        Task AddAsync(Actor actor);  
         Actor UpdateAsync(int id,Actor actor);
-        void DeleteAsync(int id);    
+        Task DeleteAsync(int id);    
     }
 }

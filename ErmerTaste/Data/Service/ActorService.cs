@@ -10,13 +10,13 @@ namespace ErmerTaste.Data.Service
         {
             _context = context;
         }
-        public async void AddAsync(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
             await  _context.Actors.AddAsync(actor); 
             await _context.SaveChangesAsync();
         }
 
-        public void DeleteAsync(int id)
+        public Task DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -28,9 +28,9 @@ namespace ErmerTaste.Data.Service
             return allactors;
         }
 
-        public async Task<IEnumerable<Actor>> GetByIdAsync(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            var results = await  _context.Actors.FirstOrDefault(n => n.Id == id);
+            var results =await  _context.Actors.FirstOrDefaultAsync(n => n.Id == id);
             return results;
         }
 
@@ -39,5 +39,6 @@ namespace ErmerTaste.Data.Service
             throw new NotImplementedException();
         }
 
+       
     }
 }
