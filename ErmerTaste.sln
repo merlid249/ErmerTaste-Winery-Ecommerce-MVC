@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErmerTaste", "ErmerTaste\ErmerTaste.csproj", "{A8C004BA-B412-44E2-B41D-2890F3502C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErmerTaste", "ErmerTaste\ErmerTaste.csproj", "{A8C004BA-B412-44E2-B41D-2890F3502C3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DATA", "DATA", "{4AE1F940-7806-42B1-9549-CACB86D1E2A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
