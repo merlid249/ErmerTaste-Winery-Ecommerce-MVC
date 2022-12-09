@@ -1,4 +1,5 @@
 ﻿using ErmerTaste.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace ErmerTaste.Data.Service
@@ -16,9 +17,11 @@ namespace ErmerTaste.Data.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var results = await _context.Actors.FirstOrDefaultAsync(n => n.Id == id);
+             _context.Actors.Remove(results);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAllAsync()
@@ -27,16 +30,18 @@ namespace ErmerTaste.Data.Service
 
             return allactors;
         }
-
+       
         public async Task<Actor> GetByIdAsync(int id)
         {
             var results =await  _context.Actors.FirstOrDefaultAsync(n => n.Id == id);
             return results;
         }
 
-        public Actor UpdateAsync(int id, Actor actor)
+        public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            _context.Update(newActor);
+            await _context.SaveChangesAsync();
+            return newActor;
         }
 
        

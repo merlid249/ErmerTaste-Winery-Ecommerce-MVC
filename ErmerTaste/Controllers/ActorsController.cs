@@ -50,5 +50,43 @@ namespace ErmerTaste.Controllers
             }
             return View(actorDetails);
         }
+        //edit
+        public async  Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("Not Found");
+            return View(actorDetails);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProfilePictureURL,FullName,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+        }
+        //delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("Not Found");
+            return View(actorDetails);
+            return View();
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("Not Found");
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
