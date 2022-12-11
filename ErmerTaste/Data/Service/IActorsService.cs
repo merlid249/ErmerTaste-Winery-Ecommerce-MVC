@@ -1,13 +1,10 @@
-﻿using ErmerTaste.Models;
+﻿using ErmerTaste.Data.Base;
+using ErmerTaste.Models;
 
 namespace ErmerTaste.Data.Service
 {
-    public interface IActorsService
+    public interface IActorsService : IEntityBaseRespository<Actor>
     {
-        Task<IEnumerable<Actor>> GetAllAsync();
-        Task<Actor> GetByIdAsync(int id);
-        Task AddAsync(Actor actor);  
-        Task<Actor> UpdateAsync(int id,Actor actor);
-        Task DeleteAsync(int id);    
+         
     }
 }
