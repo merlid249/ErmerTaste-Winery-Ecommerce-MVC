@@ -1,5 +1,7 @@
 ﻿using ErmerTaste.Data.Enus;
 using ErmerTaste.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ErmerTaste.Data
 {
@@ -217,102 +219,110 @@ namespace ErmerTaste.Data
                     {
                         new Actor_Movie()
                         {
-                            ActorId = 1,
-                            MovieId = 1
+                            MovieId = 1,
+                            ActorId = 1
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 3,
-                            MovieId = 1
+                            MovieId = 3,
+                            ActorId = 1
                         },
 
                          new Actor_Movie()
                         {
-                            ActorId = 1,
-                            MovieId = 2
+                            MovieId = 1,
+                            ActorId = 2
                         },
                          new Actor_Movie()
                         {
-                            ActorId = 4,
-                            MovieId = 2
+                            MovieId = 4,
+                            ActorId = 2
                         },
 
                         new Actor_Movie()
                         {
-                            ActorId = 1,
-                            MovieId = 3
+                            MovieId = 1,
+                            ActorId = 3
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 2,
-                            MovieId = 3
+                            MovieId = 2,
+                            ActorId = 3
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 5,
-                            MovieId = 3
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 4
+                            MovieId = 5,
+                            ActorId = 3
                         },
 
 
                         new Actor_Movie()
                         {
-                            ActorId = 2,
-                            MovieId = 5
+                            MovieId = 2,
+                            ActorId = 4
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 3,
-                            MovieId = 5
+                            MovieId = 3,
+                            ActorId = 4
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 4,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 5
+                            MovieId = 4,
+                            ActorId = 4
                         },
 
 
                         new Actor_Movie()
                         {
-                            ActorId = 3,
-                            MovieId = 6
+                            MovieId = 2,
+                            ActorId = 5
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 4,
-                            MovieId = 6
+                            MovieId = 3,
+                            ActorId = 5
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 5,
-                            MovieId = 6
+                            MovieId = 4,
+                            ActorId = 5
+                        },
+                        new Actor_Movie()
+                        {
+                            MovieId = 5,
+                            ActorId = 5
+                        },
+
+
+                        new Actor_Movie()
+                        {
+                            MovieId = 3,
+                            ActorId = 6
+                        },
+                        new Actor_Movie()
+                        {
+                            MovieId = 4,
+                            ActorId = 6
+                        },
+                        new Actor_Movie()
+                        {
+                            MovieId = 5,
+                            ActorId = 6
                         },
                     });
                     context.SaveChanges();
                 }
             }
 
+        }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                var roleManager= serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            }
         }
 
     }
