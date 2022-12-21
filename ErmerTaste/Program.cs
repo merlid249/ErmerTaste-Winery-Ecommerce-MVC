@@ -35,3 +35,4 @@ app.MapControllerRoute(
 AppDbInitializer.Seed(app);
 
 app.Run();
+ 

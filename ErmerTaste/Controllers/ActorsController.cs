@@ -56,7 +56,6 @@ namespace ErmerTaste.Controllers
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("Not Found");
             return View(actorDetails);
-            return View();
         }
 
         [HttpPost]
