@@ -1,4 +1,5 @@
 ﻿using ErmerTaste.Data.Enus;
+using ErmerTaste.Data.Static;
 using ErmerTaste.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ namespace ErmerTaste.Data
 {
     public class AppDbInitializer
     {
+       
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
 
@@ -237,79 +239,10 @@ namespace ErmerTaste.Data
                         {
                             MovieId = 4,
                             ActorId = 2
-                        },
+                        }
 
-                        new Actor_Movie()
-                        {
-                            MovieId = 1,
-                            ActorId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 2,
-                            ActorId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 5,
-                            ActorId = 3
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            MovieId = 2,
-                            ActorId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 3,
-                            ActorId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 4,
-                            ActorId = 4
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            MovieId = 2,
-                            ActorId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 3,
-                            ActorId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 4,
-                            ActorId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 5,
-                            ActorId = 5
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            MovieId = 3,
-                            ActorId = 6
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 4,
-                            ActorId = 6
-                        },
-                        new Actor_Movie()
-                        {
-                            MovieId = 5,
-                            ActorId = 6
-                        },
+                        
+,
                     });
                     context.SaveChanges();
                 }
@@ -321,8 +254,95 @@ namespace ErmerTaste.Data
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
+                //Roles
                 var roleManager= serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            
+                if(!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                }
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                }
+                if (!await roleManager.RoleExistsAsync(UserRoles.Manager))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Manager));
+                }
+                if (!await roleManager.RoleExistsAsync(UserRoles.Economist))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Economist));
+                }
+
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUsers>>();
+                string UserEmail = "admin@ermertaste.al";
+                var adminUser = await userManager.FindByEmailAsync( UserEmail);
+                if (adminUser == null)
+                {
+                    var newAdminUser = new ApplicationUsers()
+                    {
+                        FullName = "Admin user",
+                        UserName = "Admin",
+
+                        Email = "Admin" + UserEmail,
+                        EmailConfirmed = true
+
+                    };
+                    await userManager.CreateAsync(newAdminUser, "123456");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+
+
+                }
+
+                //var freeUser = await userManager.FindByEmailAsync("user" + UserEmail);
+                //if (freeUser == null)
+                //{
+                //    var newFreeUser = new ApplicationUsers()
+                //    {
+                //        FullName = "Free User",
+                //        UserName = "Free",
+
+                //        Email = "Free User" + UserEmail,
+                //        EmailConfirmed = true
+
+                //    };
+                //    await userManager.CreateAsync(newFreeUser, "123456");
+                //    await userManager.AddToRoleAsync(newFreeUser, UserRoles.User);
+                //}
+
+                //var managerUser = await userManager.FindByEmailAsync("manager" + UserEmail);
+                //if (managerUser == null)
+                //{
+                //    var newManagerUser = new ApplicationUsers()
+                //    {
+                //        FullName = "Manager User",
+                //        UserName = "Manager",
+
+                //        Email = "Manager User" + UserEmail,
+                //        EmailConfirmed = true
+
+                //    };
+                //    await userManager.CreateAsync(newManagerUser, "123456");
+                //    await userManager.AddToRoleAsync(newManagerUser, UserRoles.Manager);
+                //}
+
+                //var econommistUser = await userManager.FindByEmailAsync("econoimist" + UserEmail);
+                //if (econommistUser == null)
+                //{
+                //    var newEconomistUser = new ApplicationUsers()
+                //    {
+                //        FullName = "Manager User",
+                //        UserName = "Manager",
+
+                //        Email = "Manager User" + UserEmail,
+                //        EmailConfirmed = true
+
+                //    };
+                //    await userManager.CreateAsync(newEconomistUser, "123456");
+                //    await userManager.AddToRoleAsync(newEconomistUser, UserRoles.Economist);
+                //}
             }
+
         }
 
     }
