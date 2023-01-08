@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ErmerTaste.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221217223632_initial")]
-    partial class initial
+    [Migration("20230108173049_Mig1")]
+    partial class Mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
