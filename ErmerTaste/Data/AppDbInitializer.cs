@@ -8,7 +8,7 @@ namespace ErmerTaste.Data
 {
     public class AppDbInitializer
     {
-       
+
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
 
@@ -241,7 +241,7 @@ namespace ErmerTaste.Data
                             ActorId = 2
                         }
 
-                        
+
 ,
                     });
                     context.SaveChanges();
@@ -255,9 +255,9 @@ namespace ErmerTaste.Data
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
                 //Roles
-                var roleManager= serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            
-                if(!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                 {
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
@@ -275,75 +275,83 @@ namespace ErmerTaste.Data
                 }
 
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUsers>>();
-                string UserEmail = "admin@ermertaste.al";
-                var adminUser = await userManager.FindByEmailAsync( UserEmail);
+                string UserEmail = "merlind24@ermertaste.al";
+                var adminUser = await userManager.FindByEmailAsync(UserEmail);
                 if (adminUser == null)
                 {
                     var newAdminUser = new ApplicationUsers()
                     {
-                        FullName = "Admin user",
-                        UserName = "Admin",
+                        FullName = "Merlind Mahmuti ",
+                        UserName = "Merlind.24",
 
-                        Email = "Admin" + UserEmail,
+                        Email = UserEmail,
                         EmailConfirmed = true
 
                     };
-                    await userManager.CreateAsync(newAdminUser, "123456");
+                    await userManager.CreateAsync(newAdminUser, "Merlind123!");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+                string freeUserEmail = "mateoplau23@ermertaste.al";
 
+                var freeUser = await userManager.FindByEmailAsync(freeUserEmail);
+                if (freeUser == null)
+                {
+                    var newFreeUser = new ApplicationUsers()
+                    {
+                        FullName = "Mateo Plaku",
+                        UserName = "Gruda12",
+                        Email = freeUserEmail,
+                        EmailConfirmed = true
+                    };
 
+                    try
+                    {
+                        await userManager.CreateAsync(newFreeUser, "MatoOtr33!");
+                        await userManager.AddToRoleAsync(newFreeUser, UserRoles.User);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error creating user: " + ex.Message);
+                    }
+                }
+                string managerUserEmail = "fatjol22@ermertaste.al";
+
+                var managerUser = await userManager.FindByEmailAsync(managerUserEmail);
+                if (managerUser == null)
+                {
+                    var newManagerUser = new ApplicationUsers()
+                    {
+                        FullName = "Fatjol Hadaj",
+                        UserName = "fatjol.23",
+
+                        Email = managerUserEmail,
+                        EmailConfirmed = true
+
+                    };
+                    await userManager.CreateAsync(newManagerUser, "Fati2fa1?");
+                    await userManager.AddToRoleAsync(newManagerUser, UserRoles.Manager);
                 }
 
-                //var freeUser = await userManager.FindByEmailAsync("user" + UserEmail);
-                //if (freeUser == null)
-                //{
-                //    var newFreeUser = new ApplicationUsers()
-                //    {
-                //        FullName = "Free User",
-                //        UserName = "Free",
+                string economisUserEmail = "Kinated2@ermertaste.al";
 
-                //        Email = "Free User" + UserEmail,
-                //        EmailConfirmed = true
+                var econommistUser = await userManager.FindByEmailAsync(economisUserEmail);
+                if (econommistUser == null)
+                {
+                    var newEconomistUser = new ApplicationUsers()
+                    {
+                        FullName = "Tedi Perikliu",
+                        UserName = "perikliu12",
+                        Email = economisUserEmail,
+                        EmailConfirmed = true
 
-                //    };
-                //    await userManager.CreateAsync(newFreeUser, "123456");
-                //    await userManager.AddToRoleAsync(newFreeUser, UserRoles.User);
-                //}
+                    };
+                    await userManager.CreateAsync(newEconomistUser, "Kinated23!");
 
-                //var managerUser = await userManager.FindByEmailAsync("manager" + UserEmail);
-                //if (managerUser == null)
-                //{
-                //    var newManagerUser = new ApplicationUsers()
-                //    {
-                //        FullName = "Manager User",
-                //        UserName = "Manager",
-
-                //        Email = "Manager User" + UserEmail,
-                //        EmailConfirmed = true
-
-                //    };
-                //    await userManager.CreateAsync(newManagerUser, "123456");
-                //    await userManager.AddToRoleAsync(newManagerUser, UserRoles.Manager);
-                //}
-
-                //var econommistUser = await userManager.FindByEmailAsync("econoimist" + UserEmail);
-                //if (econommistUser == null)
-                //{
-                //    var newEconomistUser = new ApplicationUsers()
-                //    {
-                //        FullName = "Manager User",
-                //        UserName = "Manager",
-
-                //        Email = "Manager User" + UserEmail,
-                //        EmailConfirmed = true
-
-                //    };
-                //    await userManager.CreateAsync(newEconomistUser, "123456");
-                //    await userManager.AddToRoleAsync(newEconomistUser, UserRoles.Economist);
-                //}
+                    await userManager.AddToRoleAsync(newEconomistUser, UserRoles.Economist);
+                }
             }
 
-        }
+          }
 
     }
 }
